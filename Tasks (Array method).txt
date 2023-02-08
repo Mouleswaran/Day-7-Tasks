@@ -1,0 +1,40 @@
+//Solving problems using array functions on rest countries data
+
+var request = new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v2/all',true);
+request.send();
+request.onload=function(){
+    var data = JSON.parse(request.response);
+    console.log(data);
+
+//Question-1
+// a) Get all the countries from Asia continent /region using Filter function
+
+   const ans1 = data.filter((country) => country.region == "Asia")
+    console.log(ans1);
+ 
+//Question-2
+// b)Get all the countries with a population of less than 2 lakhs using Filter function
+    
+   const ans2 = data.filter((element) => element.population < 200000)
+   console.log(ans2);
+
+//Question-3
+// c)Print the following details name, capital, flag using forEach function
+
+ data.forEach(value => console.log(value.name, value.capital, value.flag));
+
+//Question-4
+//Print the total population of countries using reduce function
+  
+var ans4 = data.map(x => x.population)
+console.log(ans4.reduce((acc, y) => acc + y))
+
+//Question-5
+//Print the country which uses US Dollars as currency.
+
+// var ans5 = data.filter((country) => country.currencies.name == 'United States Dollar');
+// console.log(ans5);
+ var ans5 = data.map((country) => country.currencies);
+ console.log(ans5);
+}
